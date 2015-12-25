@@ -1,0 +1,20 @@
+mkfs.fat 3.0.26 (2014-03-07)
+Boot jump code is eb 3c
+Using 1 reserved sectors
+Disabling alignment due to tiny filesystem
+Trying with 1 sectors/cluster:
+FAT12: #clu=4385, fatlen=13, maxclu=4080, limit=4080
+FAT12: too much clusters
+FAT16: #clu=4380, fatlen=18, maxclu=4608, limit=65520
+FAT32: not enough clusters (65529)
+FAT32: #clu=0, fatlen=35, maxclu=4480, limit=268435440
+baro.dsk has 64 heads and 32 sectors per track,
+hidden sectors 0x0000;
+logical sector size is 512,
+using 0xf8 media descriptor, with 4400 sectors;
+drive number 0x80;
+filesystem has 1 16-bit FAT and 1 sector per cluster.
+FAT size is 18 sectors, and provides 4380 clusters.
+There is 1 reserved sector.
+Root directory contains 16 slots and uses 1 sectors.
+Volume ID is 7dc3e95e, volume label BARO_ELMOT .
