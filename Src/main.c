@@ -48,7 +48,7 @@ TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-#define USB_DETECT_TIMEOUT 1000
+#define USB_DETECT_TIMEOUT 3000
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -91,7 +91,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	findFirstFreeRecord();
 	BSP_LED_Init();
-	HAL_DBGMCU_EnableDBGSleepMode();//todo Remove
+	//HAL_DBGMCU_EnableDBGSleepMode();//todo Remove
 	while( hUsbDeviceFS.dev_state != USBD_STATE_ADDRESSED && HAL_GetTick() < USB_DETECT_TIMEOUT)
 	{
 		checkBtnClear();
@@ -99,8 +99,15 @@ int main(void)
 	if(hUsbDeviceFS.dev_state == USBD_STATE_ADDRESSED )
 	{
 		setLEDMode(LED_MSD_CONNECTED);
+		int suspendTicks;
 		while(1) {
 			checkBtnClear();
+			if(hUsbDeviceFS.dev_state == USBD_STATE_SUSPENDED) {
+				if(suspendTicks == 0) { suspendTicks = HAL_GetTick();
+				} else if( HAL_GetTick() - suspendTicks > USB_DETECT_TIMEOUT) HAL_NVIC_SystemReset();
+			} else {
+				suspendTicks = 0;
+			}
 		}
 	}
 	switchToMeasurementMode();
@@ -116,19 +123,24 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
+
 		  while(t >= HAL_GetTick()) {
-				//TODO uncomment __wfi();
+				__wfi();
 			}
 		  t = HAL_GetTick() + 1000;
 			checkBtnClear();
-			double temperature[3];
-			double pressure[3];
-			MS5534Measure(&temperature[0], &pressure[0]);
-			MS5534Measure(&temperature[1], &pressure[1]);
-			MS5534Measure(&temperature[2], &pressure[2]);
+			float temperature[12];
+			float pressure[12];
+			float temperatureA ;
+			float pressureA;
+			for(int  i =0; i <12; i++) {
+				MS5534Measure(&temperature[i], &pressure[i]);
+			}
+			arm_mean_f32(temperature,12,&temperatureA);
+			arm_mean_f32(pressure,12,&pressureA);
 			RECORD rec;
-			rec.tempDegC =  (temperature[0] + temperature[1] + temperature[2])/3;
-			rec.mBarsM60 = (pressure[0] + pressure[1] + pressure[2])/3 * 60;
+			rec.tempDegC =  temperatureA;
+			rec.mBarsM60 = pressureA * 60;
 			writeRecord(&rec);
   }
   /* USER CODE END 3 */

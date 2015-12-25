@@ -5,7 +5,7 @@
 #include "ms5534.h"
 
 
-const RECORD MARKER_RECORD = {126,0x8000};
+const RECORD MARKER_RECORD = {MARKER_TEMP,0x8000};
 
 int freeIdx = MAX_RECORDS;
 
@@ -47,7 +47,6 @@ bool writeRecord(const RECORD * record)
 	
 	FLASH->CR &= !FLASH_CR_PG;
 	HAL_FLASH_Lock();
-	//RCC_HSICmd(DISABLE); todo do we need this?
 	freeIdx += 2;
 	return true;
 }

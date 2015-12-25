@@ -26,8 +26,8 @@ void setLEDMode(LED_MODE mode)
 			__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, 50);
 			break;		
 		case LED_MEASUREMENT:
-			__HAL_TIM_SET_AUTORELOAD(&htim3, 1000);
-			__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, 5);
+			__HAL_TIM_SET_AUTORELOAD(&htim3, 200);
+			__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, 2);
 			break;		
 		case LED_CLEANING:
 			__HAL_TIM_SET_AUTORELOAD(&htim3, 60);
@@ -60,7 +60,6 @@ void 	switchToMeasurementMode(void ) {
 	//Run MCLK
 	HAL_TIM_Base_Start(&htim2);
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
-	//TODO init sensor
 	//Blink type
 	setLEDMode(LED_MEASUREMENT);
 }

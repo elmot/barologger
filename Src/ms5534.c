@@ -1,5 +1,6 @@
 #include "ms5534.h"
 #include <stm32f1xx_hal.h>
+#include <hardware.h>
 	/*
 		Pin Nb	PINs	FUNCTIONs
 		34	PA0	SPI2_SCK
@@ -8,27 +9,48 @@
  */
 
 /** set SCLK to the specified state (0/1) */
-void setSCLK (unsigned char state) {
+/*
+inline void setSCLK (unsigned char state) {
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, (GPIO_PinState)state);
 }
-
+*/
 /** set DIN to the specified state (0/1) */
-void setDIN (unsigned char state) {
+/*
+inline void setDIN (unsigned char state) {
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, (GPIO_PinState) state);
 }
+*/
 
 /** returns the current state of DOUT */
+/*
 unsigned char getDOUT (void) {
 	return HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1);
 }
+*/
 
-void WaitOnePulse (void) {
+void setSCLK (unsigned char state) {
+//		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, (GPIO_PinState)state);
+	BB_BIT(&GPIOA->ODR,0,state);
+}
+/** set DIN to the specified state (0/1) */
+
+void setDIN (unsigned char state) {
+//	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, (GPIO_PinState) state);
+	BB_BIT(&GPIOA->ODR,2,state);
+
+}
+/** returns the current state of DOUT */
+inline unsigned char getDOUT (void) {
+	return HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1);
+}
+
+inline void WaitOnePulse (void) {
 //	__nop();
 //	__nop();
 //	__nop();
 //	__nop();
-	__nop();
-	__nop();
+//	__nop();
+//	__nop();
 	__nop();
 	__nop();
 }
@@ -160,7 +182,7 @@ unsigned short getD2 (void)
 /* ------------------------------------------------------------------------ */
 /* --------------------------- ConvertWtoC5534 ---------------------------- */
 /* ------------------------------------------------------------------------ */
-double fc[7];
+float fc[7];
 void ConvertWtoC5534 (long W1, long W2, long W3, long W4)
 {
 	long x, y;
@@ -181,19 +203,19 @@ void ConvertWtoC5534 (long W1, long W2, long W3, long W4)
 	fc[6] = W2 & 0x003F;
 }
 
-void MS5534Measure(double *temperature, double *pressure)
+void MS5534Measure(float *temperature, float *pressure)
 {
-	double dt, off, sens;
-	double fd1, fd2, x;
-	double temp, temp2;
-	double press, press2;
+	float dt, off, sens;
+	float fd1, fd2, x;
+	float temp, temp2;
+	float press, press2;
 	MS55Reset();
 	long d1_arg = getD1();
 	long d2_arg = getD2();
 	d1_arg = d1_arg & 0xFFFF;
 	d2_arg = d2_arg & 0xFFFF;
-	fd1 = (double) d1_arg;
-	fd2 = (double) d2_arg;
+	fd1 = (float) d1_arg;
+	fd2 = (float) d2_arg;
 	dt = fd2 - ((8.0 * fc[5]) + 20224.0);
 	off = fc[2] * 4.0 + ( ( ( fc[4]-512.0) * dt ) / 4096.0);
 	sens = 24576.0 + fc[1] + ( ( fc[3] * dt ) / 1024.0);

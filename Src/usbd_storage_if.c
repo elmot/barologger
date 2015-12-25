@@ -347,17 +347,32 @@ void fillDir(uint8_t * buf) {
   *(uint32_t*)(&buf[0x5c]) = fileSize();
 }
 
+void uintToFixedDec(uint8_t* buf, int value, int digits)
+{
+	for(int i = digits -1 ; i >=0; i--) {
+		buf[i] = '0' + value % 10;
+		value = value / 10;
+	}
+}
+void intToFixedDec(uint8_t* buf, int value, int digits) {
+	if(value < 0) {
+		value = -value;
+		*buf = '-';
+	} else {
+		*buf = '+';
+	}
+	uintToFixedDec(buf + 1, value, digits - 1);
+}
 void fillFile(uint8_t * buf, int blkNum) {
-	int blockRecord = blkNum * TEXT_LINES_PER_BLOCK; 
-	if(blockRecord >= freeIdx) return;
-	memset(buf, 32, STORAGE_BLK_SIZ);
 	if(blkNum==0) {
 		memcpy(buf,"S    \tN   \tT, C\tP, mBar\tAlt, m\r\n", TEXT_LINE_LENGTH);
 	}
+	int blockRecord = blkNum * TEXT_LINES_PER_BLOCK; 
+	if(blockRecord >= freeIdx) return;
 	int serie = 1;
 	int n = 1;
 	for(int i = 1; i < blockRecord; i++) {
-		if(dataLog[i].mBarsM60 == MARKER_RECORD.mBarsM60 && dataLog[i].tempDegC == MARKER_RECORD.tempDegC) {
+		if(dataLog[i].tempDegC == MARKER_TEMP ) {
 			serie++;
 			n = 1;
 		} else n++;
@@ -366,13 +381,25 @@ void fillFile(uint8_t * buf, int blkNum) {
 		if(blockRecord >= freeIdx) break;
 		if(blkNum == 0 && i==0) continue;
 		int textIndex = i*TEXT_LINE_LENGTH;
-		if(dataLog[blockRecord].mBarsM60 == MARKER_RECORD.mBarsM60 && dataLog[blockRecord].tempDegC == MARKER_RECORD.tempDegC) {
+		if(dataLog[blockRecord].tempDegC == MARKER_TEMP ) {
 			serie++;
 			n = 1;
 			memset(&buf[textIndex], '*', TEXT_LINE_LENGTH - 2);
 		} else {
 			RECORD r = dataLog[blockRecord];
-			sprintf((char*)&buf[textIndex],"%04d\t%05d\t%+04d\t%07.2f\t?????", serie, n++, r.tempDegC, r.mBarsM60 / 60.0);
+			uintToFixedDec(&buf[textIndex], serie, 4);
+			buf[textIndex + 4] = '\t';
+			uintToFixedDec(&buf[textIndex + 5], n++, 5);
+			buf[textIndex + 10] = '\t';
+			intToFixedDec(&buf[textIndex + 11], r.tempDegC, 4);
+			buf[textIndex + 15] = '\t';
+			uintToFixedDec(&buf[textIndex + 16], r.mBarsM60 / 60, 4);
+			buf[textIndex + 20] = '.';
+			uintToFixedDec(&buf[textIndex + 21], (r.mBarsM60 % 60) * 100 / 60, 2);
+			buf[textIndex + 23] = '\t';
+      memset(&buf[textIndex + 24],'?',6);			
+			
+//			sprintf((char*)&buf[textIndex],"%04d\t%05d\t%+04d\t%07.2f\t?????", serie, n++, r.tempDegC, r.mBarsM60 / 60.0);
 			
 		}
 		buf[textIndex + TEXT_LINE_LENGTH - 2] = '\r';

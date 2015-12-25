@@ -26,6 +26,8 @@
 #define TEXT_LINES_PER_BLOCK (16)
 #define TEXT_LINE_LENGTH (32)
 
+#define MARKER_TEMP 127
+
 typedef enum LED_MODE {
 	LED_MSD_STANDBY,
 	LED_MSD_CONNECTED,
@@ -41,6 +43,7 @@ uint16_t mBarsM60;
 } RECORD;
 
 extern const RECORD MARKER_RECORD;
+
 extern RECORD dataLog [MAX_RECORDS];
 
 void BSP_LED_Init(void);
