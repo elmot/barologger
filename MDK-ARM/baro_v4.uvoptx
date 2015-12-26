@@ -196,25 +196,128 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>81</LineNumber>
+          <LineNumber>39</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134235764</Address>
+          <Address>134232424</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Src\hardware.c</Filename>
+          <Filename>..\Src\ms5534.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\\../Src/hardware.c\81</Expression>
+          <Expression>\\baro_v4_Configuration\../Src/ms5534.c\39</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>33</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134232288</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Src\ms5534.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\baro_v4_Configuration\../Src/ms5534.c\33</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>277</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134232276</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../Src/usbd_storage_if.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\baro_v4_Configuration\../Src/usbd_storage_if.c\277</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>626</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134222274</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\baro_v4_Configuration\../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.c\626</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>242</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134228344</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Src\ms5534.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\baro_v4_Configuration\../Src/ms5534.c\242</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>103</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134232388</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Src\ms5534.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\baro_v4_Configuration\../Src/ms5534.c\103</Expression>
+        </Bp>
+        <Bp>
+          <Number>6</Number>
+          <Type>0</Type>
+          <LineNumber>1046</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
+      <WatchWindow1>
+        <Ww>
+          <count>0</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>hUsbDeviceFS</ItemText>
+        </Ww>
+      </WatchWindow1>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
-          <SubType>0</SubType>
-          <ItemText>DATA_ADDRESS</ItemText>
+          <SubType>8</SubType>
+          <ItemText>buf</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
@@ -252,20 +355,16 @@
       <bLintAuto>0</bLintAuto>
       <SystemViewers>
         <Entry>
-          <Name>System Viewer\FLASH</Name>
-          <WinId>35902</WinId>
-        </Entry>
-        <Entry>
-          <Name>System Viewer\GPIOB</Name>
-          <WinId>35905</WinId>
-        </Entry>
-        <Entry>
-          <Name>System Viewer\TIM3</Name>
-          <WinId>35903</WinId>
-        </Entry>
-        <Entry>
-          <Name>System Viewer\TIM4</Name>
+          <Name>System Viewer\GPIOA</Name>
           <WinId>35904</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\RCC</Name>
+          <WinId>35901</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\USB</Name>
+          <WinId>35905</WinId>
         </Entry>
       </SystemViewers>
     </TargetOption>
@@ -526,12 +625,12 @@
       <GroupNumber>4</GroupNumber>
       <FileNumber>18</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Src\measurement.c</PathWithFileName>
-      <FilenameWithoutPath>measurement.c</FilenameWithoutPath>
+      <PathWithFileName>..\Src\hardware.c</PathWithFileName>
+      <FilenameWithoutPath>hardware.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -539,12 +638,12 @@
       <GroupNumber>4</GroupNumber>
       <FileNumber>19</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Src\hardware.c</PathWithFileName>
-      <FilenameWithoutPath>hardware.c</FilenameWithoutPath>
+      <PathWithFileName>..\Src\altitude.c</PathWithFileName>
+      <FilenameWithoutPath>altitude.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

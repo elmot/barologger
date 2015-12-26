@@ -72,7 +72,7 @@
   * @{
   */ 
 /* USER CODE BEGIN PRIVATE_MACRO  */
-#define fileSize() ((freeIdx + 1) * 32);
+#define fileSize() (freeIdx * 32);
 /* USER CODE END PRIVATE_MACRO */
 
 /**
@@ -98,10 +98,10 @@ const int8_t  STORAGE_Inquirydata_FS[] = {//36
   0x00,
   0x00,	
   0x00,
-  'S', 'T', 'M', ' ', ' ', ' ', ' ', ' ', /* Manufacturer : 8 bytes */
-  'P', 'r', 'o', 'd', 'u', 'c', 't', ' ', /* Product      : 16 Bytes */
-  ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-  '0', '.', '0' ,'1',                     /* Version      : 4 Bytes */
+  'E', 'l', 'm', 'o', 't', ' ', ' ', ' ', /* Manufacturer : 8 bytes */
+  'B', 'a', 'r', 'o', 'L', 'o', 'g', 'g', /* Product      : 16 Bytes */
+  'e', 'r', ' ', ' ', ' ', ' ', ' ', ' ',
+  '4', '.', '0' ,'0',                     /* Version      : 4 Bytes */
 }; 
 /* USER CODE END INQUIRY_DATA_FS */ 
 
@@ -148,6 +148,7 @@ void fillBootSector(uint8_t * buf);
 void fillFat(uint8_t * buf, int blkNum);
 void fillDir(uint8_t * buf);
 void fillFile(uint8_t * buf, int blkNum);
+extern int pToAlt(int p);
 /* USER CODE END  PRIVATE_FUNCTIONS_DECLARATION */
 
 /**
@@ -387,17 +388,18 @@ void fillFile(uint8_t * buf, int blkNum) {
 			memset(&buf[textIndex], '*', TEXT_LINE_LENGTH - 2);
 		} else {
 			RECORD r = dataLog[blockRecord];
+			int intP = r.mBarsM60 / 60;
 			uintToFixedDec(&buf[textIndex], serie, 4);
 			buf[textIndex + 4] = '\t';
 			uintToFixedDec(&buf[textIndex + 5], n++, 5);
 			buf[textIndex + 10] = '\t';
 			intToFixedDec(&buf[textIndex + 11], r.tempDegC, 4);
 			buf[textIndex + 15] = '\t';
-			uintToFixedDec(&buf[textIndex + 16], r.mBarsM60 / 60, 4);
+			uintToFixedDec(&buf[textIndex + 16], intP, 4);
 			buf[textIndex + 20] = '.';
 			uintToFixedDec(&buf[textIndex + 21], (r.mBarsM60 % 60) * 100 / 60, 2);
 			buf[textIndex + 23] = '\t';
-      memset(&buf[textIndex + 24],'?',6);			
+			intToFixedDec(&buf[textIndex + 24], pToAlt(intP), 6);
 			
 //			sprintf((char*)&buf[textIndex],"%04d\t%05d\t%+04d\t%07.2f\t?????", serie, n++, r.tempDegC, r.mBarsM60 / 60.0);
 			
