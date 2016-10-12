@@ -3,12 +3,12 @@
 This project is a barologger device for stratospheric balloons. 
 
 ##Techical data:
- * MCU: STM32F103CBTx; BTE14-07 development board is used (clone of Maple Mini)
- * Sensor: MS5534(http://www.amsys.info/products/ms5534.htm)
+ * MCU: STM32F103CBTx; [BTE14-07](https://www.aliexpress.com/item/leaflabs-Leaf-maple-mini-ARM-STM32-compatibility/1987703487.html) development board is used (clone of [LeafLab Maple Mini](https://github.com/leaflabs/maplemini))
+ * Sensor: [MS5534](http://www.amsys.info/products/ms5534.htm)
  * PC communication: USB (Mass Storage Device emulation)
- * Sampling period: _TBD_
- * Pressure range: 10-1100mBar
- * Storage capacity: _TBD_
+ * Sampling : 1 sec 
+ * Pressure range: 10-1100 mBar
+ * Storage capacity: ~9 hr
  
 ##How To Use
  
