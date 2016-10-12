@@ -1,6 +1,7 @@
 # Barologger
 
 This project is a barologger device for stratospheric balloons. 
+![The device](outlook.jpg)
 
 ##Techical data:
  * MCU: STM32F103CBTx; [BTE14-07](https://www.aliexpress.com/item/leaflabs-Leaf-maple-mini-ARM-STM32-compatibility/1987703487.html) development board is used (clone of [LeafLab Maple Mini](https://github.com/leaflabs/maplemini))
