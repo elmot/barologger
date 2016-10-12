@@ -29,12 +29,12 @@ This project is a barologger device for stratospheric balloons.
 _________
 ##Pinout
 
-MCU Pin | MCU Function | Sensor Function  | Sensor Pin
+MCU/BRD Pin | MCU Function | Sensor Function  | Sensor Pin
 ------ | ------ | ----- | ---
-		10 |	PA0	  | SCK   | 2
-		11 |	PA1	  | DOUT  | 3
-		12 |	PA2	  | DIN   | 4
-    13 |  PA3   | MCLK  | 5
+10/11 |	PA0	  | SCK   | 2
+11/10 |	PA1	  | DOUT  | 3
+12/9 |	PA2	  | DIN   | 4
+13/8 |  PA3   | MCLK  | 5
  | | GND | 1
  | | VDD | 6
 
